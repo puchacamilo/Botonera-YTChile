@@ -150,22 +150,18 @@
 ================================================== -->
 
 <script type="text/javascript">
-var yourAudio = document.getElementById('yourAudio'),
-    ctrl = document.getElementById('audioControl');
+  // Reinicia y reproduce el audio cada vez que se hace clic
+  document.querySelectorAll('a.boton_s').forEach(function (boton) {
+    boton.addEventListener('click', function (e) {
+      e.preventDefault();
 
-ctrl.onclick = function () {
+      const audio = this.firstChild;
 
-    // Update the Button
-    var pause = ctrl.innerHTML === 'pause!';
-    ctrl.innerHTML = pause ? 'play!' : 'pause!';
-
-    // Update the Audio
-    var method = pause ? 'pause' : 'play';
-    yourAudio[method]();
-
-    // Prevent Default Action
-    return false;
-};
+      audio.pause();
+      audio.currentTime = 0;
+      audio.play();
+    });
+  });
 </script>
 
 <!-- End Document
